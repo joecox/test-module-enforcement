@@ -30,6 +30,26 @@ expose = ["connection"]
 path = "providers"
 depends_on = ["lib.db"]
 
+[[interfaces]]
+from = ["providers"]
+expose = ["get_providers", "get_provider"]
+
 [[modules]]
 path = "server"
 depends_on = ["providers"]
+
+[[modules]]
+path = "apps.*"
+depends_on = []
+
+[[modules]]
+path = "apps.*.service"
+depends_on = ["apps.*.service"]
+
+[[interfaces]]
+from = ["apps.providers.service"]
+expose = ["get_providers"]
+
+[[interfaces]]
+from = ["apps.licenses.service"]
+expose = ["get_licenses"]

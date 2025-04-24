@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
 from lib.logging import log
-from providers.get_providers import get_provider, get_providers
+from providers import get_provider, get_providers
 from server.startup import lifespan
 
 

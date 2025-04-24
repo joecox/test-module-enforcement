@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from sqlite3 import Cursor
 
 
-def provider_row_factory(_cursor: Cursor, row: tuple[str, str, str, str]) -> Provider:
+def provider_row_factory(_cursor: "Cursor", row: tuple[str, str, str, str]) -> Provider:
     return Provider(
         id=UUID(row[0]),
         name=row[1],

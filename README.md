@@ -86,8 +86,23 @@ utility = true
 Glob patterns can also be used, which reduces how many explicit module dependencies need to be defined. The following means that any module in `lib` can depend on any other module in `lib`:
 ```toml
 [[modules]]
-path = "lib.**"
-depends_on = ["lib.**"]
+path = "lib.*"
+depends_on = ["lib.*"]
+```
+
+Or you have an `apps` folder which contains every domain which provides service method, then you say each domain can depend only on any other domain's service methods:
+```toml
+[[modules]]
+path = "apps.*"
+depends_on = ["apps.*"]
+
+[[interface]]
+from = ["apps.providers"]
+expose = ["get_providers"]
+
+[[interface]]
+from = ["apps.licenses"]
+expose = ["get_licenses"]
 ```
 
 Any more explicitly defined module will override the glob definition for that module.
