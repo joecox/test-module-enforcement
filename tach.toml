@@ -1,0 +1,35 @@
+exclude = [
+    "**/*__pycache__",
+    "**/*egg-info",
+    "**/docs",
+    "**/tests",
+    "**/venv",
+]
+source_roots = [
+    ".",
+]
+
+[[modules]]
+path = "lib.logging"
+depends_on = []
+utility = true
+
+[[modules]]
+path = "lib.feature_flag"
+depends_on = []
+
+[[modules]]
+path = "lib.db"
+depends_on = []
+
+[[interfaces]]
+from = ["lib.db"]
+expose = ["connection"]
+
+[[modules]]
+path = "providers"
+depends_on = ["lib.db"]
+
+[[modules]]
+path = "server"
+depends_on = ["providers"]
